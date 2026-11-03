@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jiya Studio | Admin Panel</title>
+
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #faf7f1;
+      color: #17233c;
+    }
+
+    .container {
+      width: 92%;
+      max-width: 650px;
+      margin: 55px auto;
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 28px;
+    }
+
+    .header h1 {
+      margin-bottom: 8px;
+      letter-spacing: 2px;
+    }
+
+    .header p { color: #777; }
+
+    .panel {
+      background: white;
+      padding: 30px;
+      border-radius: 14px;
+      box-shadow: 0 5px 25px #17233c12;
+      border: 1px solid #eee7da;
+    }
+
+    h2 { margin-top: 0; }
+
+    label {
+      display: block;
+      margin: 18px 0 7px;
+      font-weight: bold;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #ddd;
+      border-radius: 7px;
+      font-size: 15px;
+      background: #fff;
+    }
+
+    textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    input:focus, textarea:focus {
+      outline: 2px solid #c9a45c;
+      border-color: #c9a45c;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 14px;
+      background: #17233c;
+      color: white;
+      border: none;
+      border-radius: 7px;
+      font-size: 15px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:hover { background: #263958; }
+    button:disabled { opacity: .6; cursor: wait; }
+
+    .gold { color: #b18b45; }
+
+    .message {
+      margin-top: 17px;
+      padding: 12px;
+      border-radius: 7px;
+      display: none;
+      overflow-wrap: anywhere;
+    }
+
+    .success { display: block; background: #e8f5e9; color: #23652b; }
+    .error { display: block; background: #ffeded; color: #a12626; }
+
+    .top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logout {
+      width: auto;
+      margin: 0;
+      padding: 9px 16px;
+      background: #c9a45c;
+      color: #17233c;
+    }
+
+    .logout:hover { background: #b18b45; }
+
+    .small {
+      font-size: 13px;
+      color: #777;
+      line-height: 1.5;
+    }
+
+    .preview {
+      display: none;
+      width: 100%;
+      max-height: 260px;
+      object-fit: contain;
+      margin-top: 15px;
+      border-radius: 8px;
+      background: #f5f5f5;
+    }
+
+    .check-row {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: 18px;
+    }
+
+    .check-row input { width: auto; }
+    .check-row label { margin: 0; }
+
+    [hidden] { display: none !important; }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="header">
+      <h1>JIYA <span class="gold">STUDIO</span></h1>
+      <p>Creative Portfolio Management</p>
+    </div>
+
+    <!-- LOGIN SECTION -->
+    <section class="panel" id="loginSection">
+      <h2>Admin Login</h2>
+      <p class="small">Sign in using your authorized administrator account.</p>
+
+      <form id="loginForm">
+        <label for="email">Email Address</label>
+        <input
+          type="email"
+          id="email"
+          value="jiyamiss45@gmail.com"
+          required
+        >
+
+        <label for="password">Password</label>
+        <input
+          type="password"
+          id="password"
+          placeholder="Enter your password"
+          required
+        >
+
+        <button type="submit" id="loginButton">Login Securely</button>
+      </form>
+
+      <div id="loginMessage" class="message" role="status"></div>
+    </section>
+
+    <!-- UPLOAD SECTION -->
+    <section class="panel" id="uploadSection" hidden>
+      <div class="top-row">
+        <h2>Add New Project</h2>
+        <button type="button" class="logout" id="logoutButton">Logout</button>
+      </div>
+
+      <p class="small">Upload your creative work to your public portfolio.</p>
+
+      <form id="uploadForm">
+        <label for="title">Project Title</label>
+        <input
+          type="text"
+          id="title"
+          placeholder="e.g. Creative Poster"
+          required
+          maxlength="100"
+        >
+
+        <label for="category">Category</label>
+        <input
+          type="text"
+          id="category"
+          placeholder="e.g. Graphic Design"
+          required
+          maxlength="60"
+        >
+
+        <label for="description">Project Description</label>
+        <textarea
+          id="description"
+          placeholder="Write a short description..."
+          maxlength="1000"
+        ></textarea>
+
+        <label for="image">Select Project Image</label>
+        <input
+          type="file"
+          id="image"
+          accept="image/jpeg,image/png,image/webp"
+          required
+        >
+
+        <img id="imagePreview" class="preview" alt="Selected project preview">
+
+        <div class="check-row">
+          <input type="checkbox" id="featured">
+          <label for="featured">Feature this project</label>
+        </div>
+
+        <p class="small">Accepted formats: JPG, PNG and WebP. Maximum size: 10 MB.</p>
+
+        <button type="submit" id="uploadButton">Upload Project</button>
+      </form>
+
+      <div id="uploadMessage" class="message" role="status"></div>
+    </section>
+  </div>
+
+  <script type="module">
+    import { createClient } from
+      "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+    const SUPABASE_URL =
+      "https://mkadvycyqtdcaswauhav.supabase.co";
+
+    const SUPABASE_KEY =
+      "sb_publishable_LqTUPsvwIhm2MaOM2moMQQ_9EKSpeoB";
+
+    const ADMIN_UID =
+      "be746605-a011-4b19-ab27-81312716d980";
+
+    const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const loginSection = document.getElementById("loginSection");
+    const uploadSection = document.getElementById("uploadSection");
+
+    function showMessage(element, message, type) {
+      element.textContent = message;
+      element.className = "message " + type;
+    }
+
+    function clearMessage(element) {
+      element.textContent = "";
+      element.className = "message";
+    }
+
+    async function showAdmin(user) {
+      if (!user || user.id !== ADMIN_UID) {
+        await supabase.auth.signOut();
+        loginSection.hidden = false;
+        uploadSection.hidden = true;
+        showMessage(
+          document.getElementById("loginMessage"),
+          "Access denied. This account is not the authorized administrator.",
+          "error"
+        );
+        return;
+      }
+
+      loginSection.hidden = true;
+      uploadSection.hidden = false;
+    }
+
+    // Check whether the administrator is already logged in.
+    const { data: sessionData } = await supabase.auth.getSession();
+
+    if (sessionData.session) {
+      const { data: userData } = await supabase.auth.getUser();
+      await showAdmin(userData.user);
+    }
+
+    // ADMIN LOGIN
+    document.getElementById("loginForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const button = document.getElementById("loginButton");
+      const message = document.getElementById("loginMessage");
+
+      button.disabled = true;
+      button.textContent = "Logging in...";
+      clearMessage(message);
+
+      const email = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
+
+      button.disabled = false;
+      button.textContent = "Login Securely";
+
+      if (error) {
+        showMessage(message, error.message, "error");
+        return;
+      }
+
+      if (data.user.id !== ADMIN_UID) {
+        await supabase.auth.signOut();
+        showMessage(message, "Access denied: unauthorized administrator.", "error");
+        return;
+      }
+
+      document.getElementById("password").value = "";
+      await showAdmin(data.user);
+    });
+
+    // IMAGE PREVIEW
+    document.getElementById("image").addEventListener("change", (event) => {
+      const file = event.target.files[0];
+      const preview = document.getElementById("imagePreview");
+
+      if (file) {
+        preview.src = URL.createObjectURL(file);
+        preview.style.display = "block";
+      } else {
+        preview.style.display = "none";
+        preview.removeAttribute("src");
+      }
+    });
+
+    // UPLOAD IMAGE AND SAVE PROJECT
+    document.getElementById("uploadForm").addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const button = document.getElementById("uploadButton");
+      const message = document.getElementById("uploadMessage");
+
+      const title = document.getElementById("title").value.trim();
+      const category = document.getElementById("category").value.trim();
+      const description = document.getElementById("description").value.trim();
+      const file = document.getElementById("image").files[0];
+      const featured = document.getElementById("featured").checked;
+
+      if (!file) {
+        showMessage(message, "Please select an image.", "error");
+        return;
+      }
+
+      const extensions = {
+        "image/jpeg": "jpg",
+        "image/png": "png",
+        "image/webp": "webp"
+      };
+
+      if (!extensions[file.type]) {
+        showMessage(message, "Please select a JPG, PNG or WebP image.", "error");
+        return;
+      }
+
+      if (file.size > 10 * 1024 * 1024) {
+        showMessage(message, "Image must be smaller than 10 MB.", "error");
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "Uploading...";
+      clearMessage(message);
+
+      try {
+        const { data: userData, error: userError } =
+          await supabase.auth.getUser();
+
+        if (userError || !userData.user || userData.user.id !== ADMIN_UID) {
+          throw new Error("Your admin session is invalid. Please log in again.");
+        }
+
+        const filePath = `${crypto.randomUUID()}.${extensions[file.type]}`;
+
+        // Upload image to Supabase Storage.
+        const { error: storageError } = await supabase.storage
+          .from("portfolio-images")
+          .upload(filePath, file, {
+            contentType: file.type,
+            upsert: false
+          });
+
+        if (storageError) throw storageError;
+
+        // Generate the public image URL automatically.
+        const { data: urlData } = supabase.storage
+          .from("portfolio-images")
+          .getPublicUrl(filePath);
+
+        const imageUrl = urlData.publicUrl;
+
+        // Insert project information into the database.
+        const { error: databaseError } = await supabase
+          .from("portfolio_items")
+          .insert({
+            title: title,
+            category: category,
+            description: description,
+            image_url: imageUrl,
+            featured: featured
+          });
+
+        if (databaseError) throw databaseError;
+
+        showMessage(
+          message,
+          "Success! Your project and image have been added to your portfolio.",
+          "success"
+        );
+
+        document.getElementById("uploadForm").reset();
+        document.getElementById("imagePreview").style.display = "none";
+        document.getElementById("imagePreview").removeAttribute("src");
+
+      } catch (error) {
+        showMessage(message, "Upload failed: " + error.message, "error");
+      } finally {
+        button.disabled = false;
+        button.textContent = "Upload Project";
+      }
+    });
+
+    // ADMIN LOGOUT
+    document.getElementById("logoutButton").addEventListener("click", async () => {
+      await supabase.auth.signOut();
+      uploadSection.hidden = true;
+      loginSection.hidden = false;
+      clearMessage(document.getElementById("loginMessage"));
+    });
+  </script>
+
+</body>
+</html>
