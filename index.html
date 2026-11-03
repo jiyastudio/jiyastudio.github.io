@@ -1,205 +1,1002 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Javeria — Graphic Designer specializing in CVs, posters, invitations, logos, banners and social media designs.">
-<title>Javeria | Graphic Designer</title>
-<style>
-:root{
-  --navy:#17233c; --gold:#c9a45c; --cream:#faf7f1; --white:#fff;
-  --text:#263044; --muted:#697386; --soft:#eee9df; --accent:#7d5cff;
-}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:Inter,Segoe UI,Arial,sans-serif;color:var(--text);background:var(--cream);line-height:1.6}
-a{text-decoration:none;color:inherit}
-.container{width:min(1120px,92%);margin:auto}
-header{position:fixed;top:0;width:100%;z-index:20;background:rgba(250,247,241,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(23,35,60,.08)}
-nav{height:74px;display:flex;align-items:center;justify-content:space-between}
-.logo{font-family:Georgia,serif;font-size:28px;font-weight:700;color:var(--navy)}
-.logo span{color:var(--gold)}
-.navlinks{display:flex;gap:28px;font-size:14px;font-weight:600}
-.navlinks a:hover{color:var(--gold)}
-.menu{display:none;border:0;background:none;font-size:26px}
-.hero{padding:155px 0 90px;background:
- radial-gradient(circle at 90% 15%,rgba(201,164,92,.22),transparent 28%),
- linear-gradient(135deg,#fbf8f2 0%,#f2eee6 100%)}
-.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
-.kicker{text-transform:uppercase;letter-spacing:4px;font-size:12px;color:var(--gold);font-weight:800;margin-bottom:15px}
-h1{font-family:Georgia,serif;font-size:clamp(48px,7vw,78px);line-height:1.02;color:var(--navy);margin-bottom:22px}
-h1 em{color:var(--gold);font-style:normal}
-.hero p{font-size:18px;color:var(--muted);max-width:610px;margin-bottom:30px}
-.buttons{display:flex;gap:13px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 22px;border-radius:50px;font-weight:700;border:1px solid var(--navy);transition:.25s}
-.btn.primary{background:var(--navy);color:#fff}
-.btn.primary:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(23,35,60,.18)}
-.btn.light{background:transparent}
-.hero-card{min-height:430px;border-radius:28px;background:var(--navy);position:relative;overflow:hidden;box-shadow:0 25px 60px rgba(23,35,60,.2)}
-.hero-card:before{content:"";position:absolute;width:300px;height:300px;border-radius:50%;background:var(--gold);right:-100px;top:-80px;opacity:.9}
-.hero-card:after{content:"";position:absolute;width:180px;height:180px;border:1px solid rgba(255,255,255,.35);border-radius:50%;left:-55px;bottom:40px}
-.card-content{position:absolute;inset:34px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff;z-index:2}
-.card-content .initial{font-family:Georgia,serif;font-size:145px;line-height:.8;color:rgba(255,255,255,.9)}
-.card-content h2{font-family:Georgia,serif;font-size:32px;margin-top:15px}
-.card-content p{color:#dfe4ef;font-size:14px}
-section{padding:95px 0}
-.section-head{text-align:center;max-width:680px;margin:0 auto 45px}
-.section-head .kicker{margin-bottom:8px}
-h2.section-title{font-family:Georgia,serif;font-size:clamp(34px,5vw,50px);color:var(--navy);margin-bottom:10px}
-.section-head p{color:var(--muted)}
-.services{background:#fff}
-.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-.service{padding:28px 22px;border:1px solid #e8e4db;border-radius:20px;background:#fff;transition:.25s}
-.service:hover{transform:translateY(-6px);box-shadow:0 16px 35px rgba(23,35,60,.08)}
-.icon{width:46px;height:46px;border-radius:14px;background:#f2eadb;color:var(--gold);display:grid;place-items:center;font-size:21px;margin-bottom:18px}
-.service h3{font-size:18px;margin-bottom:8px;color:var(--navy)}
-.service p{font-size:14px;color:var(--muted)}
-.portfolio{background:var(--cream)}
-.filters{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-bottom:30px}
-.filter{border:1px solid #ddd6c8;background:#fff;padding:9px 16px;border-radius:30px;cursor:pointer;font-weight:700;color:var(--muted)}
-.filter.active,.filter:hover{background:var(--navy);color:#fff;border-color:var(--navy)}
-.work-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.work{min-height:280px;border-radius:22px;overflow:hidden;position:relative;background:linear-gradient(135deg,#17233c,#7d5cff);display:flex;align-items:flex-end}
-.work:nth-child(2n){background:linear-gradient(135deg,#c9a45c,#f0d7a1)}
-.work:nth-child(3n){background:linear-gradient(135deg,#3a7d8c,#9dd4cf)}
-.work-inner{width:100%;padding:25px;color:#fff;background:linear-gradient(transparent,rgba(0,0,0,.7))}
-.work-inner small{opacity:.85;text-transform:uppercase;letter-spacing:1.5px}
-.work-inner h3{font-family:Georgia,serif;font-size:25px}
-.about{background:#fff}
-.about-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:65px;align-items:center}
-.about-box{background:var(--navy);border-radius:28px;padding:45px;color:#fff;min-height:330px;display:flex;align-items:center;justify-content:center;text-align:center}
-.about-box strong{font-family:Georgia,serif;font-size:90px;color:var(--gold);display:block}
-.about h2{font-family:Georgia,serif;font-size:45px;color:var(--navy);margin-bottom:15px}
-.about p{color:var(--muted);margin-bottom:18px}
-.skills{display:flex;gap:10px;flex-wrap:wrap}
-.skill{padding:8px 13px;background:var(--soft);border-radius:20px;font-size:13px;font-weight:700}
-.contact{background:var(--navy);color:#fff}
-.contact .section-title{color:#fff!important}
-.contact .section-head p{color:#cbd3e0}
-.contact-card{display:grid;grid-template-columns:1fr 1fr;gap:20px;max-width:820px;margin:auto}
-.contact-item{padding:24px;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(255,255,255,.05)}
-.contact-item small{display:block;color:#bfc8d7;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px}
-.contact-item a{font-size:17px;font-weight:700}
-footer{background:#10182a;color:#aeb7c7;text-align:center;padding:25px;font-size:13px}
-@media(max-width:850px){
- .navlinks{display:none}.menu{display:block}
- .hero-grid,.about-grid{grid-template-columns:1fr}.hero{padding-top:125px}
- .service-grid{grid-template-columns:repeat(2,1fr)}.work-grid{grid-template-columns:repeat(2,1fr)}
- .hero-card{min-height:330px}
-}
-@media(max-width:560px){
- section{padding:70px 0}.service-grid,.work-grid,.contact-card{grid-template-columns:1fr}
- .navlinks.mobile{display:flex;position:absolute;top:74px;left:0;right:0;background:var(--cream);padding:20px;flex-direction:column;gap:15px}
- h1{font-size:48px}.about h2{font-size:36px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Jiya Studio | Creative Design Studio</title>
+
+  <meta name="description" content="Jiya Studio offers creative graphic design, CV design, branding, presentations, invitations and digital design services.">
+
+  <meta name="theme-color" content="#17233c">
+
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <style>
+    :root {
+      --navy: #17233c;
+      --gold: #c9a45c;
+      --cream: #faf7f1;
+      --white: #ffffff;
+      --text: #343a46;
+      --muted: #777777;
+      --border: #e9e3d8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      background: var(--navy);
+      color: white;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+    }
+
+    nav {
+      min-height: 75px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: 1px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .menu-btn {
+      display: none;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 27px;
+      cursor: pointer;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 530px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(110deg, rgba(23,35,60,0.98), rgba(23,35,60,0.90));
+      color: white;
+      padding: 85px 0;
+    }
+
+    .hero-content {
+      max-width: 750px;
+    }
+
+    .hero-tag {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 65px);
+      line-height: 1.15;
+      margin: 20px 0;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #e0e2e8;
+      font-size: 17px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--gold);
+      color: var(--navy);
+      padding: 13px 27px;
+      border-radius: 5px;
+      font-weight: 700;
+      transition: 0.3s;
+      border: 1px solid var(--gold);
+    }
+
+    .btn:hover {
+      background: transparent;
+      color: var(--gold);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--gold);
+      margin-left: 10px;
+    }
+
+    /* GENERAL SECTIONS */
+
+    section {
+      padding: 85px 0;
+      scroll-margin-top: 75px;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 45px;
+    }
+
+    .section-heading span {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .section-heading h2 {
+      color: var(--navy);
+      font-size: 35px;
+      margin: 8px 0;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+    }
+
+    /* ABOUT */
+
+    .about {
+      background: white;
+    }
+
+    .about-content {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .about-content p {
+      margin-bottom: 15px;
+      color: #626774;
+    }
+
+    /* SERVICES */
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 23px;
+    }
+
+    .service-card {
+      background: white;
+      padding: 30px 23px;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: 0.3s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+      box-shadow: 0 10px 30px rgba(23,35,60,0.08);
+    }
+
+    .service-icon {
+      font-size: 33px;
+      margin-bottom: 12px;
+    }
+
+    .service-card h3 {
+      color: var(--navy);
+      margin-bottom: 9px;
+      font-size: 19px;
+    }
+
+    .service-card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* PORTFOLIO */
+
+    .portfolio {
+      background: white;
+    }
+
+    .portfolio-filters {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 35px;
+    }
+
+    .filter-btn {
+      border: 1px solid var(--border);
+      background: var(--cream);
+      color: var(--navy);
+      padding: 9px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: 0.3s;
+    }
+
+    .filter-btn:hover,
+    .filter-btn.active {
+      background: var(--navy);
+      color: white;
+      border-color: var(--navy);
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .portfolio-card {
+      background: var(--cream);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .portfolio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+    }
+
+    .portfolio-image {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      object-fit: cover;
+      display: block;
+      background: #eee9df;
+    }
+
+    .portfolio-info {
+      padding: 19px;
+    }
+
+    .portfolio-info h3 {
+      color: var(--navy);
+      font-size: 18px;
+      margin-bottom: 5px;
+    }
+
+    .portfolio-category {
+      display: inline-block;
+      color: #94702f;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .portfolio-info p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .portfolio-status {
+      text-align: center;
+      padding: 30px 15px;
+      color: var(--muted);
+      grid-column: 1 / -1;
+    }
+
+    .portfolio-status.error {
+      color: #a33c3c;
+    }
+
+    .empty-icon {
+      font-size: 35px;
+      margin-bottom: 10px;
+    }
+
+    /* CONTACT */
+
+    .contact {
+      background: var(--navy);
+      color: white;
+    }
+
+    .contact .section-heading h2 {
+      color: white;
+    }
+
+    .contact .section-heading p {
+      color: #d3d7df;
+    }
+
+    .contact-content {
+      text-align: center;
+      max-width: 650px;
+      margin: auto;
+    }
+
+    .contact-content p {
+      color: #d3d7df;
+      margin-bottom: 25px;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-bottom: 28px;
+    }
+
+    .contact-details a {
+      color: var(--gold);
+      padding: 10px 15px;
+      border: 1px solid rgba(201,164,92,0.4);
+      border-radius: 5px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: #101a2d;
+      color: #c9cdd5;
+      text-align: center;
+      padding: 22px 10px;
+      font-size: 13px;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* RESPONSIVE */
+
+    @media (max-width: 800px) {
+      .services-grid,
+      .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        min-height: 68px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        width: 100%;
+        background: var(--navy);
+        padding: 20px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .hero {
+        min-height: 450px;
+        padding: 65px 0;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .btn {
+        padding: 11px 18px;
+        font-size: 13px;
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .section-heading h2 {
+        font-size: 29px;
+      }
+
+      .services-grid,
+      .portfolio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .btn-outline {
+        margin-left: 5px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<header>
-<nav class="container">
-  <a class="logo" href="#home">Javeria<span>.</span></a>
-  <div class="navlinks" id="navlinks">
-    <a href="#home">Home</a><a href="#services">Services</a><a href="#portfolio">Portfolio</a>
-    <a href="#about">About</a><a href="#contact">Contact</a>
-  </div>
-  <button class="menu" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-</nav>
-</header>
+  <!-- NAVIGATION -->
 
-<main>
-<section class="hero" id="home">
-<div class="container hero-grid">
-  <div>
-    <div class="kicker">Creative Graphic Designer</div>
-    <h1>Designs that make your <em>ideas shine.</em></h1>
-    <p>I’m Javeria, a creative graphic designer crafting elegant, modern and eye-catching visuals for personal brands, businesses, events and special occasions.</p>
-    <div class="buttons">
-      <a class="btn primary" href="#portfolio">View My Work</a>
-      <a class="btn light" href="https://wa.me/923184738304" target="_blank">Let's Work Together</a>
+  <header>
+    <nav class="container">
+
+      <a href="#home" class="logo">Jiya Studio.</a>
+
+      <button class="menu-btn"
+        id="menuBtn"
+        aria-label="Toggle navigation"
+        aria-expanded="false">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+
+  <section class="hero" id="home">
+    <div class="container hero-content">
+
+      <span class="hero-tag">Creative Design Studio</span>
+
+      <h1>
+        Creativity That Makes
+        <span>Your Ideas Shine.</span>
+      </h1>
+
+      <p>
+        Welcome to Jiya Studio, where creativity meets purpose.
+        We transform your ideas into beautiful, meaningful and
+        professional designs.
+      </p>
+
+      <a href="#portfolio" class="btn">Explore My Work</a>
+
+      <a href="#contact" class="btn btn-outline">
+        Get in Touch
+      </a>
+
     </div>
-  </div>
-  <div class="hero-card">
-    <div class="card-content">
-      <div class="initial">J</div>
-      <h2>Javeria</h2>
-      <p>Graphic Designer • Visual Creator • Creative Thinker</p>
+  </section>
+
+  <!-- ABOUT SECTION -->
+
+  <section class="about" id="about">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Who We Are</span>
+        <h2>About Jiya Studio</h2>
+      </div>
+
+      <div class="about-content">
+        <p>
+          Jiya Studio is a creative design space dedicated to
+          transforming ideas into visually appealing digital
+          experiences.
+        </p>
+
+        <p>
+          From professional CVs and branding to social media
+          graphics, presentations and invitations, every project
+          is designed with creativity, attention to detail and
+          a commitment to quality.
+        </p>
+
+        <p>
+          Our goal is simple: to make your ideas look as
+          impressive as they deserve.
+        </p>
+      </div>
+
     </div>
-  </div>
-</div>
-</section>
+  </section>
 
-<section class="services" id="services">
-<div class="container">
-<div class="section-head"><div class="kicker">What I Create</div><h2 class="section-title">My Services</h2><p>Professional designs tailored to your personality, purpose and audience.</p></div>
-<div class="service-grid">
-  <div class="service"><div class="icon">CV</div><h3>CV & Resume</h3><p>Professional, polished CV and resume designs that make a strong first impression.</p></div>
-  <div class="service"><div class="icon">✦</div><h3>Posters & Banners</h3><p>Eye-catching promotional designs for events, campaigns, businesses and social media.</p></div>
-  <div class="service"><div class="icon">♡</div><h3>Wedding & Invitation</h3><p>Elegant wedding cards, invitations and announcement designs for memorable occasions.</p></div>
-  <div class="service"><div class="icon">◆</div><h3>Branding & Logos</h3><p>Distinctive logos, business cards and visual identities designed around your brand.</p></div>
-  <div class="service"><div class="icon">▣</div><h3>Name DPS</h3><p>Creative and personalized display pictures for names, profiles and social platforms.</p></div>
-  <div class="service"><div class="icon">◈</div><h3>Social Media</h3><p>Modern social graphics that help your content look consistent and professional.</p></div>
-  <div class="service"><div class="icon">▤</div><h3>Certificates</h3><p>Clean and elegant certificates, appreciation awards and academic event materials.</p></div>
-  <div class="service"><div class="icon">＋</div><h3>Custom Designs</h3><p>Have another idea? Tell me what you need and I’ll create a design around it.</p></div>
-</div>
-</div>
-</section>
+  <!-- SERVICES SECTION -->
 
-<section class="portfolio" id="portfolio">
-<div class="container">
-<div class="section-head"><div class="kicker">Selected Work</div><h2 class="section-title">My Portfolio</h2><p>Your actual designs can be placed here. Replace the sample cards with your project images.</p></div>
-<div class="filters">
-  <button class="filter active" onclick="filterWorks('all',this)">All</button>
-  <button class="filter" onclick="filterWorks('branding',this)">Branding</button>
-  <button class="filter" onclick="filterWorks('events',this)">Events</button>
-  <button class="filter" onclick="filterWorks('personal',this)">Personal</button>
-</div>
-<div class="work-grid" id="workGrid">
-  <div class="work" data-cat="personal"><div class="work-inner"><small>Personal Branding</small><h3>CV & Resume Design</h3></div></div>
-  <div class="work" data-cat="events"><div class="work-inner"><small>Event Design</small><h3>Professional Poster</h3></div></div>
-  <div class="work" data-cat="events"><div class="work-inner"><small>Invitation</small><h3>Elegant Invitation Card</h3></div></div>
-  <div class="work" data-cat="branding"><div class="work-inner"><small>Brand Identity</small><h3>Business Card</h3></div></div>
-  <div class="work" data-cat="branding"><div class="work-inner"><small>Logo Design</small><h3>Minimal Logo Concept</h3></div></div>
-  <div class="work" data-cat="personal"><div class="work-inner"><small>Social Media</small><h3>Name Display Picture</h3></div></div>
-</div>
-</div>
-</section>
+  <section id="services">
+    <div class="container">
 
-<section class="about" id="about">
-<div class="container about-grid">
-  <div class="about-box"><div><strong>J</strong><div>Creative ideas.<br>Thoughtful design.</div></div></div>
-  <div>
-    <div class="kicker">About Me</div>
-    <h2>Turning simple ideas into memorable visuals.</h2>
-    <p>I’m Javeria, a graphic designer passionate about creating designs that are professional, elegant, unique and visually engaging. Whether you need a CV, poster, invitation, logo, banner or a custom design, I focus on making every detail work together beautifully.</p>
-    <p>My goal is simple: understand what you need, add creativity, and deliver a design you’ll be proud to share.</p>
-    <div class="skills">
-      <span class="skill">Canva</span><span class="skill">Microsoft Word</span><span class="skill">PowerPoint</span><span class="skill">Graphic Design</span><span class="skill">Creative Design</span><span class="skill">Visual Branding</span>
+      <div class="section-heading">
+        <span>What We Offer</span>
+        <h2>Our Creative Services</h2>
+        <p>Thoughtful designs for your personal and professional needs.</p>
+      </div>
+
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">📄</div>
+          <h3>CV & Resume Design</h3>
+          <p>
+            ATS-friendly, academic and professional CVs,
+            cover letters and LinkedIn profile designs.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Graphic Design</h3>
+          <p>
+            Creative posters, logos, promotional graphics,
+            social media posts and banners.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📊</div>
+          <h3>Presentations</h3>
+          <p>
+            Professional PowerPoint presentations with
+            attractive layouts and clear visual storytelling.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">💌</div>
+          <h3>Invitations & Certificates</h3>
+          <p>
+            Elegant invitation cards, event certificates,
+            appreciation cards and custom designs.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">📝</div>
+          <h3>Document Formatting</h3>
+          <p>
+            Professional Word documents, PDF editing,
+            formatting and academic document design.
+          </p>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">✨</div>
+          <h3>Branding & Identity</h3>
+          <p>
+            Creative brand identities, visual concepts,
+            business materials and digital designs.
+          </p>
+        </div>
+
+      </div>
     </div>
-  </div>
-</div>
-</section>
+  </section>
 
-<section class="contact" id="contact">
-<div class="container">
-<div class="section-head"><div class="kicker">Let's Create</div><h2 class="section-title">Have a project in mind?</h2><p>Contact me and let’s turn your idea into a professional design.</p></div>
-<div class="contact-card">
-  <div class="contact-item"><small>WhatsApp</small><a href="https://wa.me/923184738304" target="_blank">0318 4738304</a></div>
-  <div class="contact-item"><small>Email</small><a href="mailto:jiyamiss45@gmail.com">jiyamiss45@gmail.com</a></div>
-</div>
-</div>
-</section>
-</main>
+  <!-- PORTFOLIO SECTION -->
 
-<footer>© 2026 Javeria. All rights reserved. • Graphic Designer</footer>
+  <section class="portfolio" id="portfolio">
+    <div class="container">
 
-<script>
-function toggleMenu(){document.getElementById('navlinks').classList.toggle('mobile')}
-function filterWorks(cat,btn){
- document.querySelectorAll('.filter').forEach(b=>b.classList.remove('active')); btn.classList.add('active');
- document.querySelectorAll('.work').forEach(w=>w.style.display=(cat==='all'||w.dataset.cat===cat)?'flex':'none');
-}
-document.querySelectorAll('#navlinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navlinks').classList.remove('mobile')));
-</script>
+      <div class="section-heading">
+        <span>Our Creations</span>
+        <h2>My Creative Portfolio</h2>
+        <p>
+          Explore our latest projects and creative work.
+        </p>
+      </div>
+
+      <!-- Dynamic filters -->
+
+      <div class="portfolio-filters" id="portfolioFilters">
+        <button class="filter-btn active"
+          data-category="all">
+          All Projects
+        </button>
+      </div>
+
+      <!-- Projects load from Supabase -->
+
+      <div class="portfolio-grid" id="portfolioGrid">
+
+        <div class="portfolio-status">
+          <div class="empty-icon">✦</div>
+          Loading creative projects...
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+
+  <section class="contact" id="contact">
+    <div class="container">
+
+      <div class="section-heading">
+        <span>Let's Connect</span>
+        <h2>Have a Project in Mind?</h2>
+        <p>
+          Let's bring your creative ideas to life.
+        </p>
+      </div>
+
+      <div class="contact-content">
+
+        <p>
+          Whether you need a professional CV, an attractive
+          poster or a complete branding design, Jiya Studio
+          is here to help.
+        </p>
+
+        <div class="contact-details">
+
+          <a href="mailto:jiyamiss45@gmail.com">
+            ✉ Email Us
+          </a>
+
+          <a href="https://wa.me/923184738304"
+             target="_blank"
+             rel="noopener noreferrer">
+            WhatsApp
+          </a>
+
+          <a href="https://www.instagram.com/jiya678117/"
+             target="_blank"
+             rel="noopener noreferrer">
+            Instagram
+          </a>
+
+        </div>
+
+        <a href="https://wa.me/923184738304"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="btn">
+          Start a Project
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    <p>
+      © <span id="year"></span>
+      <span>Jiya Studio.</span>
+      All Rights Reserved. Designed with Creativity ❤️
+    </p>
+  </footer>
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    // ====================================
+    // SUPABASE CONFIGURATION
+    // ====================================
+
+    const SUPABASE_URL =
+      "https://mkadvycyqtdcaswauhav.supabase.co";
+
+    const SUPABASE_ANON_KEY =
+      "sb_publishable_LqTUPsvwIhm2MaOM2moMQQ_9EKSpeoB";
+
+    const supabaseClient = window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_ANON_KEY
+    );
+
+    // ====================================
+    // MOBILE NAVIGATION
+    // ====================================
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("show");
+
+      menuBtn.setAttribute("aria-expanded", String(isOpen));
+      menuBtn.textContent = isOpen ? "✕" : "☰";
+    });
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("show");
+        menuBtn.setAttribute("aria-expanded", "false");
+        menuBtn.textContent = "☰";
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    // ====================================
+    // PORTFOLIO ELEMENTS
+    // ====================================
+
+    const portfolioGrid =
+      document.getElementById("portfolioGrid");
+
+    const portfolioFilters =
+      document.getElementById("portfolioFilters");
+
+    let portfolioItems = [];
+    let activeCategory = "all";
+
+    // ====================================
+    // LOAD PORTFOLIO FROM SUPABASE
+    // ====================================
+
+    async function loadPortfolio() {
+
+      portfolioGrid.innerHTML = `
+        <div class="portfolio-status">
+          Loading your creative projects...
+        </div>
+      `;
+
+      try {
+
+        const { data, error } = await supabaseClient
+          .from("portfolio_items")
+          .select("id, title, category, description, image_url, featured, created_at")
+          .order("created_at", { ascending: false });
+
+        if (error) {
+          throw error;
+        }
+
+        portfolioItems = data || [];
+
+        if (portfolioItems.length === 0) {
+
+          portfolioGrid.innerHTML = `
+            <div class="portfolio-status">
+              <div class="empty-icon">✦</div>
+              <h3>No Projects Yet</h3>
+              <p>
+                Your creative projects will appear here
+                once you add them to your portfolio.
+              </p>
+            </div>
+          `;
+
+          portfolioFilters.innerHTML = `
+            <button class="filter-btn active"
+              data-category="all">
+              All Projects
+            </button>
+          `;
+
+          return;
+        }
+
+        createCategoryFilters();
+        displayPortfolio("all");
+
+      } catch (error) {
+
+        console.error("Portfolio loading error:", error);
+
+        portfolioGrid.innerHTML = `
+          <div class="portfolio-status error">
+            <div class="empty-icon">⚠</div>
+            <h3>Unable to Load Projects</h3>
+            <p>
+              Please check your internet connection,
+              Supabase settings and database permissions.
+            </p>
+          </div>
+        `;
+
+      }
+    }
+
+    // ====================================
+    // CREATE DYNAMIC CATEGORY FILTERS
+    // ====================================
+
+    function createCategoryFilters() {
+
+      const categories = [
+        ...new Set(
+          portfolioItems
+            .map(item => item.category)
+            .filter(category => category)
+        )
+      ];
+
+      portfolioFilters.innerHTML = `
+        <button class="filter-btn active"
+          data-category="all">
+          All Projects
+        </button>
+      `;
+
+      categories.forEach(category => {
+
+        const button = document.createElement("button");
+
+        button.className = "filter-btn";
+        button.dataset.category = category;
+        button.textContent = category;
+
+        portfolioFilters.appendChild(button);
+
+      });
+
+      portfolioFilters
+        .querySelectorAll(".filter-btn")
+        .forEach(button => {
+
+          button.addEventListener("click", () => {
+
+            const category = button.dataset.category;
+
+            activeCategory = category;
+
+            portfolioFilters
+              .querySelectorAll(".filter-btn")
+              .forEach(btn => {
+                btn.classList.remove("active");
+              });
+
+            button.classList.add("active");
+
+            displayPortfolio(category);
+
+          });
+
+        });
+
+    }
+
+    // ====================================
+    // DISPLAY PORTFOLIO CARDS
+    // ====================================
+
+    function displayPortfolio(category) {
+
+      const filteredItems =
+        category === "all"
+          ? portfolioItems
+          : portfolioItems.filter(
+              item => item.category === category
+            );
+
+      portfolioGrid.innerHTML = "";
+
+      if (filteredItems.length === 0) {
+
+        portfolioGrid.innerHTML = `
+          <div class="portfolio-status">
+            No projects found in this category.
+          </div>
+        `;
+
+        return;
+      }
+
+      filteredItems.forEach(item => {
+
+        const card = document.createElement("article");
+
+        card.className = "portfolio-card";
+
+        const image = document.createElement("img");
+
+        image.className = "portfolio-image";
+        image.alt = item.title || "Portfolio project";
+        image.loading = "lazy";
+
+        image.src = item.image_url || "";
+
+        image.onerror = () => {
+          image.style.display = "none";
+        };
+
+        const info = document.createElement("div");
+        info.className = "portfolio-info";
+
+        const title = document.createElement("h3");
+        title.textContent = item.title || "Untitled Project";
+
+        const categoryLabel = document.createElement("span");
+        categoryLabel.className = "portfolio-category";
+        categoryLabel.textContent = item.category || "Creative Design";
+
+        const description = document.createElement("p");
+        description.textContent =
+          item.description || "A creative project by Jiya Studio.";
+
+        info.appendChild(title);
+        info.appendChild(categoryLabel);
+        info.appendChild(description);
+
+        card.appendChild(image);
+        card.appendChild(info);
+
+        portfolioGrid.appendChild(card);
+
+      });
+
+    }
+
+    // ====================================
+    // INITIALIZE WEBSITE
+    // ====================================
+
+    loadPortfolio();
+
+  </script>
+
 </body>
 </html>
