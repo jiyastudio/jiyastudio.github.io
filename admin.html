@@ -6,9 +6,7 @@
   <title>Jiya Studio | Admin Panel</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
@@ -33,9 +31,7 @@
       letter-spacing: 2px;
     }
 
-    .header p {
-      color: #777;
-    }
+    .header p { color: #777; }
 
     .panel {
       background: white;
@@ -43,11 +39,10 @@
       border-radius: 14px;
       box-shadow: 0 5px 25px #17233c12;
       border: 1px solid #eee7da;
+      margin-bottom: 20px;
     }
 
-    h2 {
-      margin-top: 0;
-    }
+    h2 { margin-top: 0; }
 
     label {
       display: block;
@@ -70,9 +65,7 @@
       resize: vertical;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
+    input:focus, textarea:focus, select:focus {
       outline: 2px solid #c9a45c;
       border-color: #c9a45c;
     }
@@ -90,18 +83,14 @@
       cursor: pointer;
     }
 
-    button:hover {
-      background: #263958;
-    }
+    button:hover { background: #263958; }
 
     button:disabled {
       opacity: .6;
       cursor: wait;
     }
 
-    .gold {
-      color: #b18b45;
-    }
+    .gold { color: #b18b45; }
 
     .message {
       margin-top: 17px;
@@ -109,6 +98,7 @@
       border-radius: 7px;
       display: none;
       overflow-wrap: anywhere;
+      line-height: 1.5;
     }
 
     .success {
@@ -138,9 +128,7 @@
       color: #17233c;
     }
 
-    .logout:hover {
-      background: #b18b45;
-    }
+    .logout:hover { background: #b18b45; }
 
     .small {
       font-size: 13px;
@@ -165,40 +153,42 @@
       margin-top: 18px;
     }
 
-    .check-row input {
+    .check-row input { width: auto; }
+    .check-row label { margin: 0; }
+
+    .text-button {
+      display: inline-block;
       width: auto;
+      margin: 13px 0 0;
+      padding: 0;
+      background: transparent;
+      color: #a17b36;
+      font-size: 14px;
+      font-weight: bold;
+      text-decoration: underline;
     }
 
-    .check-row label {
-      margin: 0;
+    .text-button:hover {
+      background: transparent;
+      color: #17233c;
     }
 
-    [hidden] {
-      display: none !important;
+    .back-button {
+      margin-top: 15px;
     }
+
+    [hidden] { display: none !important; }
 
     @media (max-width: 480px) {
-      .container {
-        margin: 25px auto;
-      }
-
-      .panel {
-        padding: 22px;
-      }
-
-      .top-row {
-        align-items: flex-start;
-      }
-
-      .top-row h2 {
-        font-size: 20px;
-      }
+      .container { margin: 25px auto; }
+      .panel { padding: 22px; }
+      .top-row { align-items: flex-start; }
+      .top-row h2 { font-size: 20px; }
     }
   </style>
 </head>
 
 <body>
-
   <div class="container">
 
     <div class="header">
@@ -208,7 +198,6 @@
 
     <!-- LOGIN SECTION -->
     <section class="panel" id="loginSection">
-
       <h2>Admin Login</h2>
 
       <p class="small">
@@ -216,7 +205,6 @@
       </p>
 
       <form id="loginForm">
-
         <label for="email">Email Address</label>
         <input
           type="email"
@@ -236,23 +224,96 @@
         <button type="submit" id="loginButton">
           Login Securely
         </button>
-
       </form>
 
-      <div
-        id="loginMessage"
-        class="message"
-        role="status"
-      ></div>
+      <button
+        type="button"
+        class="text-button"
+        id="showForgotPassword"
+      >
+        Forgot Password?
+      </button>
 
+      <div id="loginMessage" class="message" role="status"></div>
+    </section>
+
+
+    <!-- FORGOT PASSWORD SECTION -->
+    <section class="panel" id="forgotSection" hidden>
+      <h2>Forgot Password?</h2>
+
+      <p class="small">
+        Enter the email address connected to your administrator account.
+        We will send you a password-reset link.
+      </p>
+
+      <form id="forgotForm">
+        <label for="forgotEmail">Admin Email Address</label>
+        <input
+          type="email"
+          id="forgotEmail"
+          value="jiyamiss45@gmail.com"
+          required
+        >
+
+        <button type="submit" id="forgotButton">
+          Send Reset Email
+        </button>
+      </form>
+
+      <button
+        type="button"
+        class="text-button back-button"
+        id="backToLogin"
+      >
+        Back to Login
+      </button>
+
+      <div id="forgotMessage" class="message" role="status"></div>
+    </section>
+
+
+    <!-- CREATE NEW PASSWORD SECTION -->
+    <section class="panel" id="resetSection" hidden>
+      <h2>Create New Password</h2>
+
+      <p class="small">
+        Enter your new password below. Use at least 8 characters.
+      </p>
+
+      <form id="resetForm">
+        <label for="newPassword">New Password</label>
+        <input
+          type="password"
+          id="newPassword"
+          placeholder="Enter your new password"
+          minlength="8"
+          autocomplete="new-password"
+          required
+        >
+
+        <label for="confirmPassword">Confirm New Password</label>
+        <input
+          type="password"
+          id="confirmPassword"
+          placeholder="Enter your new password again"
+          minlength="8"
+          autocomplete="new-password"
+          required
+        >
+
+        <button type="submit" id="resetButton">
+          Update Password
+        </button>
+      </form>
+
+      <div id="resetMessage" class="message" role="status"></div>
     </section>
 
 
     <!-- UPLOAD SECTION -->
     <section class="panel" id="uploadSection" hidden>
-
       <div class="top-row">
-
         <h2>Add New Project</h2>
 
         <button
@@ -262,7 +323,6 @@
         >
           Logout
         </button>
-
       </div>
 
       <p class="small">
@@ -271,9 +331,7 @@
 
       <form id="uploadForm">
 
-        <!-- PROJECT TITLE -->
         <label for="title">Project Title</label>
-
         <input
           type="text"
           id="title"
@@ -282,93 +340,42 @@
           maxlength="100"
         >
 
-
-        <!-- CATEGORY DROPDOWN -->
         <label for="category">Select Design Category</label>
-
         <select id="category" required>
-
-          <option value="" disabled selected>
-            Choose a category
-          </option>
-
-          <option value="CV & Resume Design">
-            CV & Resume Design
-          </option>
-
-          <option value="Posters & Banners">
-            Posters & Banners
-          </option>
-
-          <option value="Wedding & Invitations">
-            Wedding & Invitations
-          </option>
-
-          <option value="Branding & Logo Designs">
-            Branding & Logo Designs
-          </option>
-
-          <option value="Personalized Name DPs">
-            Personalized Name DPs
-          </option>
-
-          <option value="Social Media Design">
-            Social Media Design
-          </option>
-
-          <option value="Certificate Design">
-            Certificate Design
-          </option>
-
-          <option value="PowerPoint & Document Formatting">
-            PowerPoint & Document Formatting
-          </option>
-
-          <option value="Custom Designs">
-            Custom Designs
-          </option>
-
-          <option value="Other">
-            Other
-          </option>
-
+          <option value="" disabled selected>Choose a category</option>
+          <option value="CV & Resume Design">CV & Resume Design</option>
+          <option value="Posters & Banners">Posters & Banners</option>
+          <option value="Wedding & Invitations">Wedding & Invitations</option>
+          <option value="Branding & Logo Designs">Branding & Logo Designs</option>
+          <option value="Personalized Name DPs">Personalized Name DPs</option>
+          <option value="Social Media Design">Social Media Design</option>
+          <option value="Certificate Design">Certificate Design</option>
+          <option value="PowerPoint & Document Formatting">PowerPoint & Document Formatting</option>
+          <option value="Custom Designs">Custom Designs</option>
+          <option value="Other">Other</option>
         </select>
 
-
-        <!-- CUSTOM CATEGORY FIELD -->
         <div id="otherCategorySection" hidden>
-
-          <label for="otherCategory">
-            Enter Your New Category Name
-          </label>
-
+          <label for="otherCategory">Enter Your New Category Name</label>
           <input
             type="text"
             id="otherCategory"
             placeholder="e.g. YouTube Thumbnails"
             maxlength="60"
           >
-
           <p class="small">
             Write the name of the new category for this design.
           </p>
-
         </div>
 
-
-        <!-- PROJECT DESCRIPTION -->
         <label for="description">Project Description</label>
-
         <textarea
           id="description"
           placeholder="Write a short description..."
           maxlength="1000"
         ></textarea>
 
-
-        <!-- IMAGE SELECTION -->
         <label for="image">Select Project Image</label>
-
         <input
           type="file"
           id="image"
@@ -382,19 +389,9 @@
           alt="Selected project preview"
         >
 
-
-        <!-- FEATURED PROJECT -->
         <div class="check-row">
-
-          <input
-            type="checkbox"
-            id="featured"
-          >
-
-          <label for="featured">
-            Feature this project
-          </label>
-
+          <input type="checkbox" id="featured">
+          <label for="featured">Feature this project</label>
         </div>
 
         <p class="small">
@@ -405,22 +402,15 @@
         <button type="submit" id="uploadButton">
           Upload Project
         </button>
-
       </form>
 
-      <div
-        id="uploadMessage"
-        class="message"
-        role="status"
-      ></div>
-
+      <div id="uploadMessage" class="message" role="status"></div>
     </section>
 
   </div>
 
 
   <script type="module">
-
     import { createClient } from
       "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
@@ -442,63 +432,84 @@
 
 
     // PAGE ELEMENTS
-    const loginSection =
-      document.getElementById("loginSection");
+    const loginSection = document.getElementById("loginSection");
+    const forgotSection = document.getElementById("forgotSection");
+    const resetSection = document.getElementById("resetSection");
+    const uploadSection = document.getElementById("uploadSection");
 
-    const uploadSection =
-      document.getElementById("uploadSection");
-
-    const categorySelect =
-      document.getElementById("category");
-
+    const categorySelect = document.getElementById("category");
     const otherCategorySection =
       document.getElementById("otherCategorySection");
-
     const otherCategoryInput =
       document.getElementById("otherCategory");
+
+    let recoveryMode = false;
 
 
     // MESSAGE FUNCTIONS
     function showMessage(element, message, type) {
-
       element.textContent = message;
       element.className = "message " + type;
-
     }
 
     function clearMessage(element) {
-
       element.textContent = "";
       element.className = "message";
+    }
 
+
+    // SHOW ONLY THE REQUIRED SECTION
+    function showOnly(section) {
+      loginSection.hidden = true;
+      forgotSection.hidden = true;
+      resetSection.hidden = true;
+      uploadSection.hidden = true;
+
+      section.hidden = false;
     }
 
 
     // SHOW OR HIDE CUSTOM CATEGORY FIELD
     categorySelect.addEventListener("change", () => {
-
       const isOther = categorySelect.value === "Other";
 
       otherCategorySection.hidden = !isOther;
-
       otherCategoryInput.required = isOther;
 
       if (!isOther) {
         otherCategoryInput.value = "";
       }
-
     });
+
+
+    // OPEN FORGOT PASSWORD SECTION
+    document
+      .getElementById("showForgotPassword")
+      .addEventListener("click", () => {
+        document.getElementById("forgotEmail").value =
+          document.getElementById("email").value.trim() ||
+          "jiyamiss45@gmail.com";
+
+        clearMessage(document.getElementById("forgotMessage"));
+        showOnly(forgotSection);
+      });
+
+
+    // BACK TO LOGIN
+    document
+      .getElementById("backToLogin")
+      .addEventListener("click", () => {
+        clearMessage(document.getElementById("loginMessage"));
+        showOnly(loginSection);
+      });
 
 
     // ADMIN ACCESS CONTROL
     async function showAdmin(user) {
-
       if (!user || user.id !== ADMIN_UID) {
-
         await supabase.auth.signOut();
 
-        loginSection.hidden = false;
-        uploadSection.hidden = true;
+        showOnly(loginSection);
 
         showMessage(
           document.getElementById("loginMessage"),
@@ -509,42 +520,168 @@
         return;
       }
 
-      loginSection.hidden = true;
-      uploadSection.hidden = false;
-
+      showOnly(uploadSection);
     }
+
+
+    // HANDLE PASSWORD RECOVERY LINK
+    // This listener must be registered before checking the session.
+    supabase.auth.onAuthStateChange((event, session) => {
+      if (event === "PASSWORD_RECOVERY") {
+        recoveryMode = true;
+
+        showOnly(resetSection);
+
+        clearMessage(document.getElementById("resetMessage"));
+      }
+    });
 
 
     // CHECK EXISTING ADMIN SESSION
     const { data: sessionData } =
       await supabase.auth.getSession();
 
-    if (sessionData.session) {
-
+    if (sessionData.session && !recoveryMode) {
       const { data: userData } =
         await supabase.auth.getUser();
 
-      await showAdmin(userData.user);
-
+      if (!recoveryMode) {
+        await showAdmin(userData.user);
+      }
     }
+
+
+    // SEND PASSWORD RESET EMAIL
+    document
+      .getElementById("forgotForm")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const button = document.getElementById("forgotButton");
+        const message = document.getElementById("forgotMessage");
+
+        const email =
+          document.getElementById("forgotEmail").value.trim();
+
+        button.disabled = true;
+        button.textContent = "Sending...";
+        clearMessage(message);
+
+        try {
+          const redirectUrl =
+            window.location.origin + window.location.pathname;
+
+          const { error } =
+            await supabase.auth.resetPasswordForEmail(email, {
+              redirectTo: redirectUrl
+            });
+
+          if (error) throw error;
+
+          showMessage(
+            message,
+            "If an account exists for this email, a password-reset link has been sent. Please check your inbox and spam folder.",
+            "success"
+          );
+
+        } catch (error) {
+          showMessage(
+            message,
+            "Unable to send reset email: " + error.message,
+            "error"
+          );
+        } finally {
+          button.disabled = false;
+          button.textContent = "Send Reset Email";
+        }
+      });
+
+
+    // UPDATE TO NEW PASSWORD
+    document
+      .getElementById("resetForm")
+      .addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const button = document.getElementById("resetButton");
+        const message = document.getElementById("resetMessage");
+
+        const newPassword =
+          document.getElementById("newPassword").value;
+
+        const confirmPassword =
+          document.getElementById("confirmPassword").value;
+
+        clearMessage(message);
+
+        if (newPassword.length < 8) {
+          showMessage(
+            message,
+            "Your new password must contain at least 8 characters.",
+            "error"
+          );
+          return;
+        }
+
+        if (newPassword !== confirmPassword) {
+          showMessage(
+            message,
+            "The passwords do not match. Please enter them again.",
+            "error"
+          );
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = "Updating Password...";
+
+        try {
+          const { error } =
+            await supabase.auth.updateUser({
+              password: newPassword
+            });
+
+          if (error) throw error;
+
+          await supabase.auth.signOut();
+
+          recoveryMode = false;
+
+          document.getElementById("resetForm").reset();
+          document.getElementById("password").value = "";
+
+          showOnly(loginSection);
+
+          showMessage(
+            document.getElementById("loginMessage"),
+            "Your password has been changed successfully. You can now log in using your new password.",
+            "success"
+          );
+
+        } catch (error) {
+          showMessage(
+            message,
+            "Password update failed: " + error.message,
+            "error"
+          );
+        } finally {
+          button.disabled = false;
+          button.textContent = "Update Password";
+        }
+      });
 
 
     // ADMIN LOGIN
     document
       .getElementById("loginForm")
       .addEventListener("submit", async (event) => {
-
         event.preventDefault();
 
-        const button =
-          document.getElementById("loginButton");
-
-        const message =
-          document.getElementById("loginMessage");
+        const button = document.getElementById("loginButton");
+        const message = document.getElementById("loginMessage");
 
         button.disabled = true;
         button.textContent = "Logging in...";
-
         clearMessage(message);
 
         const email =
@@ -553,40 +690,37 @@
         const password =
           document.getElementById("password").value;
 
-        const { data, error } =
-          await supabase.auth.signInWithPassword({
-            email,
-            password
-          });
+        try {
+          const { data, error } =
+            await supabase.auth.signInWithPassword({
+              email,
+              password
+            });
 
-        button.disabled = false;
-        button.textContent = "Login Securely";
+          if (error) throw error;
 
-        if (error) {
+          if (data.user.id !== ADMIN_UID) {
+            await supabase.auth.signOut();
 
+            showMessage(
+              message,
+              "Access denied: unauthorized administrator.",
+              "error"
+            );
+
+            return;
+          }
+
+          document.getElementById("password").value = "";
+
+          await showAdmin(data.user);
+
+        } catch (error) {
           showMessage(message, error.message, "error");
-          return;
-
+        } finally {
+          button.disabled = false;
+          button.textContent = "Login Securely";
         }
-
-        if (data.user.id !== ADMIN_UID) {
-
-          await supabase.auth.signOut();
-
-          showMessage(
-            message,
-            "Access denied: unauthorized administrator.",
-            "error"
-          );
-
-          return;
-
-        }
-
-        document.getElementById("password").value = "";
-
-        await showAdmin(data.user);
-
       });
 
 
@@ -594,24 +728,16 @@
     document
       .getElementById("image")
       .addEventListener("change", (event) => {
-
         const file = event.target.files[0];
-
-        const preview =
-          document.getElementById("imagePreview");
+        const preview = document.getElementById("imagePreview");
 
         if (file) {
-
           preview.src = URL.createObjectURL(file);
           preview.style.display = "block";
-
         } else {
-
           preview.style.display = "none";
           preview.removeAttribute("src");
-
         }
-
       });
 
 
@@ -619,25 +745,18 @@
     document
       .getElementById("uploadForm")
       .addEventListener("submit", async (event) => {
-
         event.preventDefault();
 
-        const button =
-          document.getElementById("uploadButton");
-
-        const message =
-          document.getElementById("uploadMessage");
+        const button = document.getElementById("uploadButton");
+        const message = document.getElementById("uploadMessage");
 
         const title =
           document.getElementById("title").value.trim();
 
-        // GET CATEGORY FROM DROPDOWN OR OTHER FIELD
         let category = categorySelect.value;
 
         if (category === "Other") {
-
           category = otherCategoryInput.value.trim();
-
         }
 
         const description =
@@ -652,19 +771,15 @@
 
         // VALIDATE CATEGORY
         if (!category) {
-
           showMessage(
             message,
             "Please select a design category.",
             "error"
           );
-
           return;
-
         }
 
         if (categorySelect.value === "Other" && !category) {
-
           showMessage(
             message,
             "Please enter your new category name.",
@@ -673,65 +788,46 @@
 
           otherCategoryInput.focus();
           return;
-
         }
 
 
         // VALIDATE IMAGE
         if (!file) {
-
-          showMessage(
-            message,
-            "Please select an image.",
-            "error"
-          );
-
+          showMessage(message, "Please select an image.", "error");
           return;
-
         }
 
         const extensions = {
-
           "image/jpeg": "jpg",
           "image/png": "png",
           "image/webp": "webp"
-
         };
 
         if (!extensions[file.type]) {
-
           showMessage(
             message,
             "Please select a JPG, PNG or WebP image.",
             "error"
           );
-
           return;
-
         }
 
         if (file.size > 10 * 1024 * 1024) {
-
           showMessage(
             message,
             "Image must be smaller than 10 MB.",
             "error"
           );
-
           return;
-
         }
 
 
         // START UPLOAD
         button.disabled = true;
         button.textContent = "Uploading...";
-
         clearMessage(message);
 
-
         try {
-
           // VERIFY ADMIN SESSION
           const { data: userData, error: userError } =
             await supabase.auth.getUser();
@@ -741,11 +837,9 @@
             !userData.user ||
             userData.user.id !== ADMIN_UID
           ) {
-
             throw new Error(
               "Your admin session is invalid. Please log in again."
             );
-
           }
 
 
@@ -763,9 +857,7 @@
                 upsert: false
               });
 
-          if (storageError) {
-            throw storageError;
-          }
+          if (storageError) throw storageError;
 
 
           // GENERATE PUBLIC IMAGE URL
@@ -782,18 +874,14 @@
             await supabase
               .from("portfolio_items")
               .insert({
-
                 title: title,
                 category: category,
                 description: description,
                 image_url: imageUrl,
                 featured: featured
-
               });
 
-          if (databaseError) {
-            throw databaseError;
-          }
+          if (databaseError) throw databaseError;
 
 
           // SUCCESS MESSAGE
@@ -808,31 +896,21 @@
           document.getElementById("uploadForm").reset();
 
           document.getElementById("imagePreview").style.display = "none";
+          document.getElementById("imagePreview").removeAttribute("src");
 
-          document
-            .getElementById("imagePreview")
-            .removeAttribute("src");
-
-          // HIDE CUSTOM CATEGORY FIELD AGAIN
           otherCategorySection.hidden = true;
           otherCategoryInput.required = false;
 
-
         } catch (error) {
-
           showMessage(
             message,
             "Upload failed: " + error.message,
             "error"
           );
-
         } finally {
-
           button.disabled = false;
           button.textContent = "Upload Project";
-
         }
-
       });
 
 
@@ -840,19 +918,13 @@
     document
       .getElementById("logoutButton")
       .addEventListener("click", async () => {
-
         await supabase.auth.signOut();
 
-        uploadSection.hidden = true;
-        loginSection.hidden = false;
+        showOnly(loginSection);
 
-        clearMessage(
-          document.getElementById("loginMessage")
-        );
-
+        clearMessage(document.getElementById("loginMessage"));
       });
 
   </script>
-
 </body>
 </html>
