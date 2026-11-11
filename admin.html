@@ -843,9 +843,11 @@
           }
 
 
-          // CREATE UNIQUE IMAGE FILE NAME
+          // CREATE CATEGORY FOLDER AND UNIQUE IMAGE FILE NAME
+          // The selected category becomes the folder name in portfolio-images.
+          // Example: Posters & Banners/unique-file-name.jpg
           const filePath =
-            `${crypto.randomUUID()}.${extensions[file.type]}`;
+            `${category}/${crypto.randomUUID()}.${extensions[file.type]}`;
 
 
           // UPLOAD IMAGE TO SUPABASE STORAGE
