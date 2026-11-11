@@ -173,9 +173,7 @@
       color: #17233c;
     }
 
-    .back-button {
-      margin-top: 15px;
-    }
+    .back-button { margin-top: 15px; }
 
     [hidden] { display: none !important; }
 
@@ -206,31 +204,20 @@
 
       <form id="loginForm">
         <label for="email">Email Address</label>
-        <input
-          type="email"
-          id="email"
-          value="jiyamiss45@gmail.com"
-          required
-        >
+        <input type="email" id="email"
+          value="jiyamiss45@gmail.com" required>
 
         <label for="password">Password</label>
-        <input
-          type="password"
-          id="password"
-          placeholder="Enter your password"
-          required
-        >
+        <input type="password" id="password"
+          placeholder="Enter your password" required>
 
         <button type="submit" id="loginButton">
           Login Securely
         </button>
       </form>
 
-      <button
-        type="button"
-        class="text-button"
-        id="showForgotPassword"
-      >
+      <button type="button" class="text-button"
+        id="showForgotPassword">
         Forgot Password?
       </button>
 
@@ -249,23 +236,16 @@
 
       <form id="forgotForm">
         <label for="forgotEmail">Admin Email Address</label>
-        <input
-          type="email"
-          id="forgotEmail"
-          value="jiyamiss45@gmail.com"
-          required
-        >
+        <input type="email" id="forgotEmail"
+          value="jiyamiss45@gmail.com" required>
 
         <button type="submit" id="forgotButton">
           Send Reset Email
         </button>
       </form>
 
-      <button
-        type="button"
-        class="text-button back-button"
-        id="backToLogin"
-      >
+      <button type="button"
+        class="text-button back-button" id="backToLogin">
         Back to Login
       </button>
 
@@ -273,7 +253,7 @@
     </section>
 
 
-    <!-- CREATE NEW PASSWORD SECTION -->
+    <!-- RESET PASSWORD SECTION -->
     <section class="panel" id="resetSection" hidden>
       <h2>Create New Password</h2>
 
@@ -283,24 +263,14 @@
 
       <form id="resetForm">
         <label for="newPassword">New Password</label>
-        <input
-          type="password"
-          id="newPassword"
+        <input type="password" id="newPassword"
           placeholder="Enter your new password"
-          minlength="8"
-          autocomplete="new-password"
-          required
-        >
+          minlength="8" autocomplete="new-password" required>
 
         <label for="confirmPassword">Confirm New Password</label>
-        <input
-          type="password"
-          id="confirmPassword"
+        <input type="password" id="confirmPassword"
           placeholder="Enter your new password again"
-          minlength="8"
-          autocomplete="new-password"
-          required
-        >
+          minlength="8" autocomplete="new-password" required>
 
         <button type="submit" id="resetButton">
           Update Password
@@ -313,81 +283,82 @@
 
     <!-- UPLOAD SECTION -->
     <section class="panel" id="uploadSection" hidden>
+
       <div class="top-row">
         <h2>Add New Project</h2>
 
-        <button
-          type="button"
-          class="logout"
-          id="logoutButton"
-        >
+        <button type="button" class="logout" id="logoutButton">
           Logout
         </button>
       </div>
 
       <p class="small">
-        Upload your creative work to your public portfolio.
+        Upload your creative work. Select a category and your image
+        will automatically be saved in its respective Supabase folder.
       </p>
 
       <form id="uploadForm">
 
         <label for="title">Project Title</label>
-        <input
-          type="text"
-          id="title"
+        <input type="text" id="title"
           placeholder="e.g. Creative Poster"
-          required
-          maxlength="100"
-        >
+          required maxlength="100">
 
         <label for="category">Select Design Category</label>
+
         <select id="category" required>
-          <option value="" disabled selected>Choose a category</option>
-          <option value="CV & Resume Design">CV & Resume Design</option>
-          <option value="Posters & Banners">Posters & Banners</option>
-          <option value="Wedding & Invitations">Wedding & Invitations</option>
-          <option value="Branding & Logo Designs">Branding & Logo Designs</option>
-          <option value="Personalized Name DPs">Personalized Name DPs</option>
-          <option value="Social Media Design">Social Media Design</option>
-          <option value="Certificate Design">Certificate Design</option>
-          <option value="PowerPoint & Document Formatting">PowerPoint & Document Formatting</option>
-          <option value="Custom Designs">Custom Designs</option>
-          <option value="Other">Other</option>
+          <option value="" disabled selected>
+            Choose a category
+          </option>
+
+          <option value="Branding & Logo Designs">
+            Branding & Logo Designs
+          </option>
+
+          <option value="Certificate Designs">
+            Certificate Designs
+          </option>
+
+          <option value="Custom Designs">
+            Custom Designs
+          </option>
+
+          <option value="CV & Resume Designs">
+            CV & Resume Designs
+          </option>
+
+          <option value="Personalized Name DPs">
+            Personalized Name DPs
+          </option>
+
+          <option value="Posters & Banners">
+            Posters & Banners
+          </option>
+
+          <option value="PowerPoint & Document Formatting">
+            PowerPoint & Document Formatting
+          </option>
+
+          <option value="Social Media Designs">
+            Social Media Designs
+          </option>
+
+          <option value="Wedding & Invitations Cards">
+            Wedding & Invitations Cards
+          </option>
         </select>
 
-        <div id="otherCategorySection" hidden>
-          <label for="otherCategory">Enter Your New Category Name</label>
-          <input
-            type="text"
-            id="otherCategory"
-            placeholder="e.g. YouTube Thumbnails"
-            maxlength="60"
-          >
-          <p class="small">
-            Write the name of the new category for this design.
-          </p>
-        </div>
-
         <label for="description">Project Description</label>
-        <textarea
-          id="description"
+        <textarea id="description"
           placeholder="Write a short description..."
-          maxlength="1000"
-        ></textarea>
+          maxlength="1000"></textarea>
 
         <label for="image">Select Project Image</label>
-        <input
-          type="file"
-          id="image"
-          accept="image/jpeg,image/png,image/webp"
-          required
-        >
+        <input type="file" id="image"
+          accept="image/jpeg,image/png,image/webp" required>
 
-        <img
-          id="imagePreview"
-          class="preview"
-          alt="Selected project preview"
-        >
+        <img id="imagePreview" class="preview"
+          alt="Selected project preview">
 
         <div class="check-row">
           <input type="checkbox" id="featured">
@@ -411,11 +382,15 @@
 
 
   <script type="module">
+
     import { createClient } from
       "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
+    // =====================================
     // SUPABASE CONNECTION
+    // =====================================
+
     const SUPABASE_URL =
       "https://mkadvycyqtdcaswauhav.supabase.co";
 
@@ -431,22 +406,68 @@
     );
 
 
-    // PAGE ELEMENTS
-    const loginSection = document.getElementById("loginSection");
-    const forgotSection = document.getElementById("forgotSection");
-    const resetSection = document.getElementById("resetSection");
-    const uploadSection = document.getElementById("uploadSection");
+    // =====================================
+    // EXACT CATEGORY AND FOLDER MAPPING
+    // =====================================
 
-    const categorySelect = document.getElementById("category");
-    const otherCategorySection =
-      document.getElementById("otherCategorySection");
-    const otherCategoryInput =
-      document.getElementById("otherCategory");
+    const CATEGORY_FOLDERS = {
+
+      "Branding & Logo Designs":
+        "Branding & Logo Designs",
+
+      "Certificate Designs":
+        "Certificate Designs",
+
+      "Custom Designs":
+        "Custom Designs",
+
+      "CV & Resume Designs":
+        "CV & Resume Designs",
+
+      "Personalized Name DPs":
+        "Personalized Name DPs",
+
+      "Posters & Banners":
+        "Posters & Banners",
+
+      "PowerPoint & Document Formatting":
+        "PowerPoint & Document Formatting",
+
+      "Social Media Designs":
+        "Social Media Designs",
+
+      "Wedding & Invitations Cards":
+        "Wedding & Invitations Cards"
+
+    };
+
+
+    // =====================================
+    // PAGE ELEMENTS
+    // =====================================
+
+    const loginSection =
+      document.getElementById("loginSection");
+
+    const forgotSection =
+      document.getElementById("forgotSection");
+
+    const resetSection =
+      document.getElementById("resetSection");
+
+    const uploadSection =
+      document.getElementById("uploadSection");
+
+    const categorySelect =
+      document.getElementById("category");
 
     let recoveryMode = false;
 
 
+    // =====================================
     // MESSAGE FUNCTIONS
+    // =====================================
+
     function showMessage(element, message, type) {
       element.textContent = message;
       element.className = "message " + type;
@@ -458,7 +479,10 @@
     }
 
 
-    // SHOW ONLY THE REQUIRED SECTION
+    // =====================================
+    // SHOW REQUIRED SECTION
+    // =====================================
+
     function showOnly(section) {
       loginSection.hidden = true;
       forgotSection.hidden = true;
@@ -469,44 +493,14 @@
     }
 
 
-    // SHOW OR HIDE CUSTOM CATEGORY FIELD
-    categorySelect.addEventListener("change", () => {
-      const isOther = categorySelect.value === "Other";
-
-      otherCategorySection.hidden = !isOther;
-      otherCategoryInput.required = isOther;
-
-      if (!isOther) {
-        otherCategoryInput.value = "";
-      }
-    });
-
-
-    // OPEN FORGOT PASSWORD SECTION
-    document
-      .getElementById("showForgotPassword")
-      .addEventListener("click", () => {
-        document.getElementById("forgotEmail").value =
-          document.getElementById("email").value.trim() ||
-          "jiyamiss45@gmail.com";
-
-        clearMessage(document.getElementById("forgotMessage"));
-        showOnly(forgotSection);
-      });
-
-
-    // BACK TO LOGIN
-    document
-      .getElementById("backToLogin")
-      .addEventListener("click", () => {
-        clearMessage(document.getElementById("loginMessage"));
-        showOnly(loginSection);
-      });
-
-
+    // =====================================
     // ADMIN ACCESS CONTROL
+    // =====================================
+
     async function showAdmin(user) {
+
       if (!user || user.id !== ADMIN_UID) {
+
         await supabase.auth.signOut();
 
         showOnly(loginSection);
@@ -524,50 +518,105 @@
     }
 
 
-    // HANDLE PASSWORD RECOVERY LINK
-    // This listener must be registered before checking the session.
-    supabase.auth.onAuthStateChange((event, session) => {
-      if (event === "PASSWORD_RECOVERY") {
-        recoveryMode = true;
+    // =====================================
+    // PASSWORD RECOVERY LISTENER
+    // =====================================
 
+    supabase.auth.onAuthStateChange((event, session) => {
+
+      if (event === "PASSWORD_RECOVERY") {
+
+        recoveryMode = true;
         showOnly(resetSection);
 
-        clearMessage(document.getElementById("resetMessage"));
+        clearMessage(
+          document.getElementById("resetMessage")
+        );
       }
+
     });
 
 
+    // =====================================
     // CHECK EXISTING ADMIN SESSION
+    // =====================================
+
     const { data: sessionData } =
       await supabase.auth.getSession();
 
     if (sessionData.session && !recoveryMode) {
-      const { data: userData } =
+
+      const { data: userData, error } =
         await supabase.auth.getUser();
 
-      if (!recoveryMode) {
+      if (!error && !recoveryMode) {
         await showAdmin(userData.user);
       }
     }
 
 
-    // SEND PASSWORD RESET EMAIL
+    // =====================================
+    // FORGOT PASSWORD
+    // =====================================
+
+    document
+      .getElementById("showForgotPassword")
+      .addEventListener("click", () => {
+
+        document.getElementById("forgotEmail").value =
+          document.getElementById("email").value.trim() ||
+          "jiyamiss45@gmail.com";
+
+        clearMessage(
+          document.getElementById("forgotMessage")
+        );
+
+        showOnly(forgotSection);
+      });
+
+
+    // =====================================
+    // BACK TO LOGIN
+    // =====================================
+
+    document
+      .getElementById("backToLogin")
+      .addEventListener("click", () => {
+
+        clearMessage(
+          document.getElementById("loginMessage")
+        );
+
+        showOnly(loginSection);
+      });
+
+
+    // =====================================
+    // SEND RESET EMAIL
+    // =====================================
+
     document
       .getElementById("forgotForm")
       .addEventListener("submit", async (event) => {
+
         event.preventDefault();
 
-        const button = document.getElementById("forgotButton");
-        const message = document.getElementById("forgotMessage");
+        const button =
+          document.getElementById("forgotButton");
+
+        const message =
+          document.getElementById("forgotMessage");
 
         const email =
           document.getElementById("forgotEmail").value.trim();
 
         button.disabled = true;
         button.textContent = "Sending...";
+
         clearMessage(message);
 
         try {
+
           const redirectUrl =
             window.location.origin + window.location.pathname;
 
@@ -585,26 +634,37 @@
           );
 
         } catch (error) {
+
           showMessage(
             message,
             "Unable to send reset email: " + error.message,
             "error"
           );
+
         } finally {
+
           button.disabled = false;
           button.textContent = "Send Reset Email";
         }
+
       });
 
 
-    // UPDATE TO NEW PASSWORD
+    // =====================================
+    // UPDATE PASSWORD
+    // =====================================
+
     document
       .getElementById("resetForm")
       .addEventListener("submit", async (event) => {
+
         event.preventDefault();
 
-        const button = document.getElementById("resetButton");
-        const message = document.getElementById("resetMessage");
+        const button =
+          document.getElementById("resetButton");
+
+        const message =
+          document.getElementById("resetMessage");
 
         const newPassword =
           document.getElementById("newPassword").value;
@@ -615,20 +675,24 @@
         clearMessage(message);
 
         if (newPassword.length < 8) {
+
           showMessage(
             message,
             "Your new password must contain at least 8 characters.",
             "error"
           );
+
           return;
         }
 
         if (newPassword !== confirmPassword) {
+
           showMessage(
             message,
             "The passwords do not match. Please enter them again.",
             "error"
           );
+
           return;
         }
 
@@ -636,6 +700,7 @@
         button.textContent = "Updating Password...";
 
         try {
+
           const { error } =
             await supabase.auth.updateUser({
               password: newPassword
@@ -659,29 +724,41 @@
           );
 
         } catch (error) {
+
           showMessage(
             message,
             "Password update failed: " + error.message,
             "error"
           );
+
         } finally {
+
           button.disabled = false;
           button.textContent = "Update Password";
         }
+
       });
 
 
+    // =====================================
     // ADMIN LOGIN
+    // =====================================
+
     document
       .getElementById("loginForm")
       .addEventListener("submit", async (event) => {
+
         event.preventDefault();
 
-        const button = document.getElementById("loginButton");
-        const message = document.getElementById("loginMessage");
+        const button =
+          document.getElementById("loginButton");
+
+        const message =
+          document.getElementById("loginMessage");
 
         button.disabled = true;
         button.textContent = "Logging in...";
+
         clearMessage(message);
 
         const email =
@@ -691,6 +768,7 @@
           document.getElementById("password").value;
 
         try {
+
           const { data, error } =
             await supabase.auth.signInWithPassword({
               email,
@@ -700,6 +778,7 @@
           if (error) throw error;
 
           if (data.user.id !== ADMIN_UID) {
+
             await supabase.auth.signOut();
 
             showMessage(
@@ -716,48 +795,75 @@
           await showAdmin(data.user);
 
         } catch (error) {
+
           showMessage(message, error.message, "error");
+
         } finally {
+
           button.disabled = false;
           button.textContent = "Login Securely";
         }
+
       });
 
 
+    // =====================================
     // IMAGE PREVIEW
+    // =====================================
+
+    let previewObjectUrl = null;
+
     document
       .getElementById("image")
       .addEventListener("change", (event) => {
+
         const file = event.target.files[0];
-        const preview = document.getElementById("imagePreview");
+
+        const preview =
+          document.getElementById("imagePreview");
+
+        if (previewObjectUrl) {
+          URL.revokeObjectURL(previewObjectUrl);
+          previewObjectUrl = null;
+        }
 
         if (file) {
-          preview.src = URL.createObjectURL(file);
+
+          previewObjectUrl = URL.createObjectURL(file);
+
+          preview.src = previewObjectUrl;
           preview.style.display = "block";
+
         } else {
+
           preview.style.display = "none";
           preview.removeAttribute("src");
         }
+
       });
 
 
-    // UPLOAD IMAGE AND SAVE PROJECT
+    // =====================================
+    // UPLOAD IMAGE AND SAVE DATABASE ROW
+    // =====================================
+
     document
       .getElementById("uploadForm")
       .addEventListener("submit", async (event) => {
+
         event.preventDefault();
 
-        const button = document.getElementById("uploadButton");
-        const message = document.getElementById("uploadMessage");
+        const button =
+          document.getElementById("uploadButton");
+
+        const message =
+          document.getElementById("uploadMessage");
 
         const title =
           document.getElementById("title").value.trim();
 
-        let category = categorySelect.value;
-
-        if (category === "Other") {
-          category = otherCategoryInput.value.trim();
-        }
+        const category =
+          categorySelect.value;
 
         const description =
           document.getElementById("description").value.trim();
@@ -770,30 +876,29 @@
 
 
         // VALIDATE CATEGORY
-        if (!category) {
-          showMessage(
-            message,
-            "Please select a design category.",
-            "error"
-          );
-          return;
-        }
 
-        if (categorySelect.value === "Other" && !category) {
+        if (!category || !CATEGORY_FOLDERS[category]) {
+
           showMessage(
             message,
-            "Please enter your new category name.",
+            "Please select a valid design category.",
             "error"
           );
 
-          otherCategoryInput.focus();
           return;
         }
 
 
         // VALIDATE IMAGE
+
         if (!file) {
-          showMessage(message, "Please select an image.", "error");
+
+          showMessage(
+            message,
+            "Please select an image.",
+            "error"
+          );
+
           return;
         }
 
@@ -804,31 +909,41 @@
         };
 
         if (!extensions[file.type]) {
+
           showMessage(
             message,
             "Please select a JPG, PNG or WebP image.",
             "error"
           );
+
           return;
         }
 
         if (file.size > 10 * 1024 * 1024) {
+
           showMessage(
             message,
             "Image must be smaller than 10 MB.",
             "error"
           );
+
           return;
         }
 
 
         // START UPLOAD
+
         button.disabled = true;
         button.textContent = "Uploading...";
+
         clearMessage(message);
 
+        let uploadedFilePath = null;
+
         try {
+
           // VERIFY ADMIN SESSION
+
           const { data: userData, error: userError } =
             await supabase.auth.getUser();
 
@@ -837,20 +952,27 @@
             !userData.user ||
             userData.user.id !== ADMIN_UID
           ) {
+
             throw new Error(
               "Your admin session is invalid. Please log in again."
             );
           }
 
 
-          // CREATE CATEGORY FOLDER AND UNIQUE IMAGE FILE NAME
-          // The selected category becomes the folder name in portfolio-images.
-          // Example: Posters & Banners/unique-file-name.jpg
+          // GET EXACT EXISTING CATEGORY FOLDER
+
+          const folderName =
+            CATEGORY_FOLDERS[category];
+
+          const uniqueFileName =
+            crypto.randomUUID() + "." + extensions[file.type];
+
           const filePath =
-            `${category}/${crypto.randomUUID()}.${extensions[file.type]}`;
+            `${folderName}/${uniqueFileName}`;
 
 
-          // UPLOAD IMAGE TO SUPABASE STORAGE
+          // UPLOAD TO RESPECTIVE STORAGE FOLDER
+
           const { error: storageError } =
             await supabase.storage
               .from("portfolio-images")
@@ -861,8 +983,11 @@
 
           if (storageError) throw storageError;
 
+          uploadedFilePath = filePath;
+
 
           // GENERATE PUBLIC IMAGE URL
+
           const { data: urlData } =
             supabase.storage
               .from("portfolio-images")
@@ -871,7 +996,8 @@
           const imageUrl = urlData.publicUrl;
 
 
-          // SAVE PROJECT INFORMATION IN DATABASE
+          // INSERT ROW INTO PORTFOLIO TABLE
+
           const { error: databaseError } =
             await supabase
               .from("portfolio_items")
@@ -886,45 +1012,94 @@
           if (databaseError) throw databaseError;
 
 
-          // SUCCESS MESSAGE
+          // SUCCESS
+
           showMessage(
             message,
-            "Success! Your project and image have been added to your portfolio.",
+            `Success! Your image has been uploaded to "${folderName}" and its database row has been created.`,
             "success"
           );
 
 
-          // RESET FORM AFTER SUCCESSFUL UPLOAD
+          // RESET FORM
+
           document.getElementById("uploadForm").reset();
 
-          document.getElementById("imagePreview").style.display = "none";
-          document.getElementById("imagePreview").removeAttribute("src");
+          const preview =
+            document.getElementById("imagePreview");
 
-          otherCategorySection.hidden = true;
-          otherCategoryInput.required = false;
+          preview.style.display = "none";
+          preview.removeAttribute("src");
+
+          if (previewObjectUrl) {
+
+            URL.revokeObjectURL(previewObjectUrl);
+            previewObjectUrl = null;
+          }
+
 
         } catch (error) {
+
+          // REMOVE UPLOADED FILE IF DATABASE INSERT FAILS
+
+          if (uploadedFilePath) {
+
+            const { error: cleanupError } =
+              await supabase.storage
+                .from("portfolio-images")
+                .remove([uploadedFilePath]);
+
+            if (cleanupError) {
+              console.error(
+                "Storage cleanup failed:",
+                cleanupError
+              );
+            }
+          }
+
           showMessage(
             message,
             "Upload failed: " + error.message,
             "error"
           );
+
         } finally {
+
           button.disabled = false;
           button.textContent = "Upload Project";
         }
+
       });
 
 
+    // =====================================
     // ADMIN LOGOUT
+    // =====================================
+
     document
       .getElementById("logoutButton")
       .addEventListener("click", async () => {
-        await supabase.auth.signOut();
+
+        const { error } =
+          await supabase.auth.signOut();
+
+        if (error) {
+
+          showMessage(
+            document.getElementById("uploadMessage"),
+            "Logout failed: " + error.message,
+            "error"
+          );
+
+          return;
+        }
 
         showOnly(loginSection);
 
-        clearMessage(document.getElementById("loginMessage"));
+        clearMessage(
+          document.getElementById("loginMessage")
+        );
+
       });
 
   </script>
