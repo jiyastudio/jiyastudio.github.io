@@ -717,16 +717,24 @@ section{padding:100px 0}
   object-fit:contain;
   border-radius:4px;
   box-shadow:0 20px 70px rgba(0,0,0,.28);
-  transform-origin:center;
+  transform-origin:center center;
+  will-change:transform;
 }
+
+/* FASTER AND MORE VISIBLE PREVIEW ZOOM */
 
 .preview-modal.open .preview-content img{
-  animation:previewMotion 9s ease-in-out .9s infinite alternate;
+  animation:previewZoom 2.8s ease-in-out .2s infinite alternate;
 }
 
-@keyframes previewMotion{
-  from{transform:scale(1) translateY(0)}
-  to{transform:scale(1.025) translateY(-5px)}
+@keyframes previewZoom{
+  0%{
+    transform:scale(1) translateY(0);
+  }
+
+  100%{
+    transform:scale(1.12) translateY(-7px);
+  }
 }
 
 .preview-content h3{
@@ -906,9 +914,7 @@ footer{
 
 footer span{color:var(--gold)}
 
-/* ==========================================
-   CINEMATIC SCROLL REVEALS
-========================================== */
+/* CINEMATIC SCROLL REVEALS */
 
 .reveal{
   opacity:0;
@@ -920,22 +926,18 @@ footer span{color:var(--gold)}
   will-change:opacity,transform,filter;
 }
 
-/* Left entrance */
 .reveal.from-left{
   transform:translateX(-75px) translateY(15px);
 }
 
-/* Right entrance */
 .reveal.from-right{
   transform:translateX(75px) translateY(15px);
 }
 
-/* Bottom entrance */
 .reveal.from-bottom{
   transform:translateY(65px);
 }
 
-/* Gentle scale entrance */
 .reveal.from-scale{
   transform:scale(.87) translateY(25px);
 }
@@ -947,12 +949,12 @@ footer span{color:var(--gold)}
   will-change:auto;
 }
 
-/* Staggered gallery card timing */
 .folder-card.reveal.revealed{
   transition-delay:0s;
 }
 
 /* Motion after an image has appeared */
+
 .work.revealed img{
   animation:imageFloat 7s ease-in-out 1s infinite alternate;
 }
@@ -964,6 +966,7 @@ footer span{color:var(--gold)}
 }
 
 /* Folder cover subtle movement */
+
 .folder-card.revealed .folder-collage img{
   animation:folderImageDrift 8s ease-in-out 1s infinite alternate;
 }
@@ -974,6 +977,7 @@ footer span{color:var(--gold)}
 }
 
 /* Image entrance glow */
+
 .work.revealed{
   animation:workShadow 1.5s ease both;
 }
@@ -1053,18 +1057,17 @@ footer span{color:var(--gold)}
 /* ACCESSIBILITY */
 
 @media(prefers-reduced-motion:reduce){
-  html{scroll-behavior:auto}
-
-  *,*::before,*::after{
-    animation:none!important;
-    transition:none!important;
-    scroll-behavior:auto!important;
+  *,
+  *::before,
+  *::after{
+    scroll-behavior:auto !important;
+    animation-duration:.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:.01ms !important;
   }
 
-  .reveal{
-    opacity:1!important;
-    filter:none!important;
-    transform:none!important;
+  .preview-modal.open .preview-content img{
+    animation:none !important;
   }
 }
 </style>
@@ -1284,9 +1287,7 @@ footer span{color:var(--gold)}
 
 <script>
 
-/* ==========================================
-   SUPABASE CONNECTION
-========================================== */
+/* SUPABASE CONNECTION */
 
 const SUPABASE_URL =
   "https://mkadvycyqtdcaswauhav.supabase.co";
@@ -1297,9 +1298,7 @@ const SUPABASE_PUBLISHABLE_KEY =
 const STORAGE_BUCKET = "portfolio-images";
 
 
-/* ==========================================
-   OFFICIAL CATEGORY FOLDERS
-========================================== */
+/* OFFICIAL CATEGORY FOLDERS */
 
 const DEFAULT_CATEGORIES = [
   "CV & Resume Designs",
@@ -1314,9 +1313,7 @@ const DEFAULT_CATEGORIES = [
 ];
 
 
-/* ==========================================
-   GLOBAL DATA
-========================================== */
+/* GLOBAL DATA */
 
 let portfolioItems = [];
 let portfolioCategories = [];
@@ -1329,9 +1326,7 @@ const reducedMotion =
   window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
-/* ==========================================
-   MOBILE MENU
-========================================== */
+/* MOBILE MENU */
 
 function toggleMenu() {
   const nav = document.getElementById("navlinks");
@@ -1346,9 +1341,7 @@ function toggleMenu() {
 }
 
 
-/* ==========================================
-   SAFE HTML
-========================================== */
+/* SAFE HTML */
 
 function escapeHTML(value) {
   return String(value ?? "").replace(/[&<>"']/g, character => ({
@@ -1361,9 +1354,7 @@ function escapeHTML(value) {
 }
 
 
-/* ==========================================
-   NORMALIZE CATEGORY NAMES
-========================================== */
+/* NORMALIZE CATEGORY NAMES */
 
 function normalizeCategory(value) {
   return String(value || "")
@@ -1380,9 +1371,7 @@ function normalizeCategory(value) {
 }
 
 
-/* ==========================================
-   MAP CATEGORY VARIATIONS TO ONE FOLDER
-========================================== */
+/* MAP CATEGORY VARIATIONS TO ONE FOLDER */
 
 function canonicalCategory(value) {
   const key = normalizeCategory(value);
@@ -1441,9 +1430,7 @@ function canonicalCategory(value) {
 }
 
 
-/* ==========================================
-   IMAGE URL HANDLER
-========================================== */
+/* IMAGE URL HANDLER */
 
 function safeImageURL(value) {
   if (!value) return "";
@@ -1483,9 +1470,7 @@ function safeImageURL(value) {
 }
 
 
-/* ==========================================
-   CATEGORY ITEMS
-========================================== */
+/* CATEGORY ITEMS */
 
 function getCategoryItems(categoryName) {
   const key = canonicalCategory(categoryName);
@@ -1497,9 +1482,7 @@ function getCategoryItems(categoryName) {
 }
 
 
-/* ==========================================
-   LOAD SUPABASE PORTFOLIO
-========================================== */
+/* LOAD SUPABASE PORTFOLIO */
 
 async function loadPortfolio() {
   const gallery = document.getElementById("galleryGrid");
@@ -1555,9 +1538,7 @@ async function loadPortfolio() {
 }
 
 
-/* ==========================================
-   CREATE FOLDER PREVIEW COLLAGE
-========================================== */
+/* CREATE FOLDER PREVIEW COLLAGE */
 
 function createFolderPreview(items) {
   const urls = items
@@ -1599,9 +1580,7 @@ function createFolderPreview(items) {
 }
 
 
-/* ==========================================
-   BUILD UNIQUE FOLDERS
-========================================== */
+/* BUILD UNIQUE FOLDERS */
 
 function buildCollections() {
   const gallery = document.getElementById("galleryGrid");
@@ -1691,9 +1670,7 @@ function buildCollections() {
 }
 
 
-/* ==========================================
-   OPEN CATEGORY
-========================================== */
+/* OPEN CATEGORY */
 
 function openCategory(index) {
   const category = portfolioCategories[index];
@@ -1715,9 +1692,7 @@ function openCategory(index) {
 }
 
 
-/* ==========================================
-   SHOW DESIGNS FROM SELECTED CATEGORY ONLY
-========================================== */
+/* SHOW DESIGNS FROM SELECTED CATEGORY ONLY */
 
 function renderCategoryItems(categoryName) {
   const categoryKey = canonicalCategory(categoryName);
@@ -1772,9 +1747,7 @@ function renderCategoryItems(categoryName) {
 }
 
 
-/* ==========================================
-   BACK TO COLLECTIONS
-========================================== */
+/* BACK TO COLLECTIONS */
 
 function showCollections() {
   document.getElementById("categoryView").classList.remove("visible");
@@ -1790,9 +1763,7 @@ function showCollections() {
 }
 
 
-/* ==========================================
-   OPEN CINEMATIC PREVIEW
-========================================== */
+/* OPEN CINEMATIC PREVIEW */
 
 function openPreview(id,trigger) {
   const item = portfolioItems.find(project =>
@@ -1835,9 +1806,7 @@ function openPreview(id,trigger) {
 }
 
 
-/* ==========================================
-   CLOSE CINEMATIC PREVIEW
-========================================== */
+/* CLOSE CINEMATIC PREVIEW */
 
 function closePreview() {
   const modal = document.getElementById("previewModal");
@@ -1873,9 +1842,7 @@ function closePreview() {
 }
 
 
-/* ==========================================
-   CLICK HANDLERS
-========================================== */
+/* CLICK HANDLERS */
 
 document.getElementById("galleryGrid").addEventListener("click",event => {
   const button = event.target.closest("[data-category-index]");
@@ -1902,9 +1869,7 @@ document.getElementById("previewModal").addEventListener("click",event => {
 });
 
 
-/* ==========================================
-   KEYBOARD SUPPORT
-========================================== */
+/* KEYBOARD SUPPORT */
 
 document.addEventListener("keydown",event => {
   const modal = document.getElementById("previewModal");
@@ -1915,9 +1880,7 @@ document.addEventListener("keydown",event => {
 });
 
 
-/* ==========================================
-   MOBILE NAVIGATION
-========================================== */
+/* MOBILE NAVIGATION */
 
 document.querySelectorAll("#navlinks a").forEach(link => {
   link.addEventListener("click",() => {
@@ -1932,9 +1895,7 @@ document.querySelectorAll("#navlinks a").forEach(link => {
 });
 
 
-/* ==========================================
-   CINEMATIC REVEAL ENGINE
-========================================== */
+/* CINEMATIC REVEAL ENGINE */
 
 function observeReveals(root=document) {
   const elements = root.querySelectorAll(".reveal:not(.revealed)");
@@ -1951,7 +1912,6 @@ function observeReveals(root=document) {
 
         const element = entry.target;
 
-        // Alternate left, right and bottom entrances
         if (!element.classList.contains("from-left") &&
             !element.classList.contains("from-right") &&
             !element.classList.contains("from-bottom") &&
@@ -1963,7 +1923,6 @@ function observeReveals(root=document) {
           element.classList.add(modes[index % modes.length]);
         }
 
-        // Small stagger between cards
         const parent = element.parentElement;
         let delay = 0;
 
@@ -1995,9 +1954,7 @@ function observeReveals(root=document) {
 }
 
 
-/* ==========================================
-   INITIAL ANIMATIONS
-========================================== */
+/* INITIAL ANIMATIONS */
 
 document.querySelectorAll(
   ".hero-copy,.hero-art,.section-head,.gallery-intro"
@@ -2009,16 +1966,12 @@ document.querySelectorAll(
 observeReveals();
 
 
-/* ==========================================
-   INITIAL LOAD
-========================================== */
+/* INITIAL LOAD */
 
 loadPortfolio();
 
 
-/* ==========================================
-   AUTOMATIC REFRESH
-========================================== */
+/* AUTOMATIC REFRESH */
 
 setInterval(() => {
   if (document.visibilityState === "visible") {
